@@ -1,5 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import SiteLayout from '../layouts/SiteLayout.astro';
+import importShot from '../assets/screenshots/import.png';
+import rulesShot from '../assets/screenshots/rules.png';
+import dashboardShot from '../assets/screenshots/dashboard.png';
 
 const steps = [
 	{
@@ -29,6 +33,27 @@ const features = [
 	{
 		title: 'Dashboard & insights',
 		text: 'Income, expenses, net savings, and transaction count at a glance, plus category breakdowns, daily trends, and monthly comparisons.',
+	},
+];
+
+const previews = [
+	{
+		title: 'Bank statement import',
+		caption: 'Upload a file, map its columns once, and Vezne remembers the mapping for next time.',
+		image: importShot,
+		alt: 'Vezne import screen with a file upload field and saved column mapping selector',
+	},
+	{
+		title: 'Automation rules',
+		caption: 'Priority-ordered rules match transaction text and assign a category automatically.',
+		image: rulesShot,
+		alt: 'Vezne rules table listing three automation rules with their match text and assigned category',
+	},
+	{
+		title: 'Dashboard & insights',
+		caption: 'Income, expenses, and net savings over time, plus a category breakdown.',
+		image: dashboardShot,
+		alt: 'Vezne dashboard with income, expense, and net savings charts and a category breakdown',
 	},
 ];
 ---
@@ -79,6 +104,21 @@ const features = [
 							))}
 						</ul>
 					)}
+				</div>
+			))
+		}
+	</section>
+
+	<section class="previews">
+		<h2 class="previews-heading">See it in action</h2>
+		{
+			previews.map((preview) => (
+				<div class="preview">
+					<p class="preview-title">{preview.title}</p>
+					<div class="preview-frame">
+						<Image src={preview.image} alt={preview.alt} />
+					</div>
+					<p class="preview-caption">{preview.caption}</p>
 				</div>
 			))
 		}
@@ -219,6 +259,54 @@ const features = [
 		border: 1px solid rgba(236, 231, 223, 0.12);
 		border-radius: 6px;
 		padding: 0.15rem 0.5rem;
+	}
+
+	.previews {
+		margin: 0 0 3rem;
+	}
+
+	.previews-heading {
+		margin: 0 0 2rem;
+		font-size: 0.8rem;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: #a39e95;
+	}
+
+	.preview-frame {
+		max-width: 900px;
+	}
+
+	.preview + .preview {
+		margin-top: 3rem;
+	}
+
+	.preview-title {
+		margin: 0 0 0.75rem;
+		font-size: 1rem;
+		font-weight: 600;
+	}
+
+	.preview-frame {
+		background: #100e0b;
+		border: 1px solid rgba(236, 231, 223, 0.08);
+		border-radius: 12px;
+		overflow: hidden;
+		line-height: 0;
+	}
+
+	.preview-frame :global(img) {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.preview-caption {
+		margin: 0.75rem 0 0;
+		font-size: 0.85rem;
+		line-height: 1.6;
+		color: #a39e95;
 	}
 
 	@media (max-width: 760px) {
