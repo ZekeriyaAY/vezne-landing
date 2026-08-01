@@ -1,0 +1,157 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	wide?: boolean;
+}
+
+const { title, description, wide = false } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{title} — Vezne</title>
+	</head>
+	<body>
+		<header class:list={{ wide }}>
+			<a class="brand" href="/" aria-label="Vezne">
+				<svg width="20" height="20" viewBox="0 0 32 32" aria-hidden="true">
+					<rect width="32" height="32" rx="7" fill="#100e0b" />
+					<path fill="url(#copper)" d="M7 8h7.5L16 18.5 17.5 8H25L16.85 25.4a1 1 0 0 1-1.7 0L7 8Z" />
+					<defs>
+						<linearGradient id="copper" x1="16" y1="8" x2="16" y2="25.4" gradientUnits="userSpaceOnUse">
+							<stop offset="0" stop-color="#d99a6c" />
+							<stop offset="1" stop-color="#a85e28" />
+						</linearGradient>
+					</defs>
+				</svg>
+				<span>VEZNE</span>
+			</a>
+			<a class="cta" href="https://app.vezne.app/register">Go to app →</a>
+		</header>
+
+		<main class:list={{ wide }}>
+			<slot />
+		</main>
+
+		<footer class:list={{ wide }}>
+			<nav>
+				<a href="/faq">FAQ</a>
+				<a href="/terms">Terms</a>
+				<a href="/privacy">Privacy</a>
+			</nav>
+			<p>© {new Date().getFullYear()} Vezne</p>
+		</footer>
+	</body>
+</html>
+
+<style>
+	:global(html) {
+		background: #070605;
+	}
+
+	:global(body) {
+		margin: 0;
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+		color: #ece7df;
+	}
+
+	header,
+	footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		max-width: 680px;
+		margin: 0 auto;
+		padding: 1.75rem 1.5rem;
+	}
+
+	header.wide,
+	footer.wide {
+		max-width: 1120px;
+	}
+
+	.brand {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: #ece7df;
+		text-decoration: none;
+		font-size: 0.8rem;
+		font-weight: 500;
+		letter-spacing: 0.12em;
+	}
+
+	.cta {
+		color: #c17b45;
+		text-decoration: none;
+		font-size: 0.85rem;
+		border-bottom: 1px solid rgba(193, 123, 69, 0.4);
+		padding-bottom: 2px;
+	}
+
+	.cta:hover {
+		border-bottom-color: #c17b45;
+	}
+
+	main {
+		max-width: 680px;
+		margin: 0 auto;
+		padding: 1rem 1.5rem 5rem;
+	}
+
+	main.wide {
+		max-width: 1120px;
+	}
+
+	footer {
+		border-top: 1px solid rgba(236, 231, 223, 0.1);
+		padding-top: 1.5rem;
+		padding-bottom: 2.5rem;
+	}
+
+	footer nav {
+		display: flex;
+		gap: 1.25rem;
+	}
+
+	footer a {
+		color: #a39e95;
+		text-decoration: none;
+		font-size: 0.85rem;
+	}
+
+	footer a:hover {
+		color: #ece7df;
+	}
+
+	footer p {
+		margin: 0;
+		font-size: 0.8rem;
+		color: #a39e95;
+	}
+
+	main :global(.page-head) {
+		margin-bottom: 2.5rem;
+		padding-bottom: 1.5rem;
+		border-bottom: 1px solid rgba(236, 231, 223, 0.1);
+	}
+
+	main :global(.page-head h1) {
+		margin: 0 0 0.5rem;
+		font-size: 2rem;
+		font-weight: 600;
+		letter-spacing: -0.02em;
+	}
+
+	main :global(.page-head .updated) {
+		margin: 0;
+		font-size: 0.85rem;
+		color: #a39e95;
+	}
+</style>

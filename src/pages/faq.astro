@@ -1,0 +1,181 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+const groups = [
+	{
+		title: 'Getting started',
+		items: [
+			{
+				q: 'What is Vezne?',
+				a: 'Vezne is a personal finance tracker. Record and categorize your income and expenses, import bank statement files, set up rules that categorize new transactions automatically, and track it all from a dashboard — with no live connection to your bank.',
+			},
+			{
+				q: 'Is Vezne free to use?',
+				a: 'Yes, Vezne is currently free. If paid plans are introduced later, pricing will be shown to you up front before anything is charged.',
+			},
+			{
+				q: 'Do I need to connect my bank account?',
+				a: 'No. Vezne never connects directly to your bank or asks for your banking credentials. You export a statement from your bank yourself and upload the file.',
+			},
+		],
+	},
+	{
+		title: 'Importing bank statements',
+		items: [
+			{
+				q: 'What file formats can I import?',
+				a: 'Excel (.xlsx/.xls) and CSV files are supported today. PDF statements can also be imported using an optional AI-assisted parsing step — it’s off by default and only runs if you turn it on in Settings. Other formats (OFX, QIF) are planned but not available yet.',
+			},
+			{
+				q: 'How does column mapping work?',
+				a: 'After you upload a file, Vezne asks you to map its columns (date, amount, description, etc.) to the fields it understands. You can save a mapping, and it’ll be suggested automatically the next time you import a statement from the same bank.',
+			},
+			{
+				q: 'Can I check the data before it’s added to my account?',
+				a: 'Yes. Every import goes through a preview step where you can review, edit, or exclude individual rows before committing them to your account.',
+			},
+			{
+				q: 'What if I accidentally import the same statement twice?',
+				a: 'Vezne checks for duplicates automatically during import, so re-uploading a statement — or one with an overlapping date range — won’t create duplicate transactions.',
+			},
+		],
+	},
+	{
+		title: 'Categories, tags & automation',
+		items: [
+			{
+				q: 'How are categories organized?',
+				a: 'Categories have up to two levels — a parent for grouping, and children underneath it. Transactions and rules always attach to a specific child category, never to a parent group directly.',
+			},
+			{
+				q: 'What are tags for?',
+				a: 'Tags are flat labels you can attach to any transaction, independent of its category — useful for cutting across categories, like tagging everything related to a trip.',
+			},
+			{
+				q: 'How do automation rules work?',
+				a: 'Rules run in priority order during import. Each rule matches transaction text (contains, equals, starts with, or ends with a value you set) and, when it matches, assigns a category and optionally a type or tags — so recurring transactions get sorted automatically instead of by hand every time.',
+			},
+		],
+	},
+	{
+		title: 'Account & security',
+		items: [
+			{
+				q: 'How is my password protected?',
+				a: 'Your password is stored as a salted hash — Vezne never stores or has access to it in plain text.',
+			},
+			{
+				q: 'Can I sign in with Google?',
+				a: 'Yes, Google Sign-In is available alongside email and password, at your choice.',
+			},
+			{
+				q: 'What happens if I delete my account?',
+				a: 'Your account is deactivated immediately, with a 30-day window to restore it just by signing back in. After that window, your data is permanently deleted.',
+			},
+			{
+				q: 'Is my data shared with anyone?',
+				a: 'No — Vezne doesn’t sell your data or use it for advertising. A small number of service providers help run the product (sign-in, bot protection, error tracking, and the optional AI parsing feature), each only receiving what it needs to do its job. Full details are in the <a href="/privacy">Privacy Policy</a>.',
+				html: true,
+			},
+			{
+				q: 'Where can I read the full legal terms?',
+				a: 'See the <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>.',
+				html: true,
+			},
+		],
+	},
+];
+---
+
+<SiteLayout
+	title="FAQ"
+	description="Frequently asked questions about Vezne — importing bank statements, automation rules, and account security."
+>
+	<div class="page-head">
+		<h1>Frequently Asked Questions</h1>
+	</div>
+
+	<div class="faq">
+		{
+			groups.map((group) => (
+				<section>
+					<h2>{group.title}</h2>
+					{group.items.map((item) => (
+						<details>
+							<summary>{item.q}</summary>
+							{item.html ? (
+								<p set:html={item.a} />
+							) : (
+								<p>{item.a}</p>
+							)}
+						</details>
+					))}
+				</section>
+			))
+		}
+	</div>
+</SiteLayout>
+
+<style>
+	.faq section + section {
+		margin-top: 2.5rem;
+	}
+
+	.faq h2 {
+		margin: 0 0 0.75rem;
+		font-size: 0.8rem;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: #a39e95;
+	}
+
+	details {
+		border-bottom: 1px solid rgba(236, 231, 223, 0.1);
+	}
+
+	details:first-of-type {
+		border-top: 1px solid rgba(236, 231, 223, 0.1);
+	}
+
+	summary {
+		cursor: pointer;
+		list-style: none;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 1rem 0;
+		font-size: 0.95rem;
+		font-weight: 500;
+		color: #ece7df;
+	}
+
+	summary::-webkit-details-marker {
+		display: none;
+	}
+
+	summary::after {
+		content: '+';
+		flex-shrink: 0;
+		color: #c17b45;
+		font-size: 1.1rem;
+	}
+
+	details[open] summary::after {
+		content: '\2212';
+	}
+
+	details p {
+		margin: 0 0 1.1rem;
+		font-size: 0.9rem;
+		line-height: 1.65;
+		color: #a39e95;
+	}
+
+	details p :global(a) {
+		color: #c17b45;
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+</style>

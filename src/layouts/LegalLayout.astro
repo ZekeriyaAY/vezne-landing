@@ -1,0 +1,65 @@
+---
+import SiteLayout from './SiteLayout.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	lastUpdated: string;
+}
+
+const { title, description, lastUpdated } = Astro.props;
+---
+
+<SiteLayout title={title} description={description}>
+	<div class="page-head">
+		<h1>{title}</h1>
+		<p class="updated">Last updated: {lastUpdated}</p>
+	</div>
+	<div class="content">
+		<slot />
+	</div>
+</SiteLayout>
+
+<style>
+	.content {
+		font-size: 0.95rem;
+		line-height: 1.7;
+	}
+
+	.content :global(section + section) {
+		margin-top: 2.25rem;
+	}
+
+	.content :global(h2) {
+		margin: 0 0 0.75rem;
+		font-size: 1.1rem;
+		font-weight: 600;
+		color: #ece7df;
+	}
+
+	.content :global(p) {
+		margin: 0 0 0.75rem;
+		color: #a39e95;
+	}
+
+	.content :global(ul) {
+		margin: 0 0 0.75rem;
+		padding-left: 1.25rem;
+		color: #a39e95;
+	}
+
+	.content :global(li) {
+		margin-bottom: 0.4rem;
+	}
+
+	.content :global(strong) {
+		font-weight: 600;
+		color: #ece7df;
+	}
+
+	.content :global(a) {
+		color: #c17b45;
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+</style>
