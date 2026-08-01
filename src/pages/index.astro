@@ -1,0 +1,92 @@
+---
+---
+
+<html lang="tr">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content="Vezne — kişisel finans takibi. Çok yakında." />
+		<title>Vezne</title>
+	</head>
+	<body>
+		<main>
+			<svg class="mark" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 32 32" aria-hidden="true">
+				<rect width="32" height="32" rx="7" fill="#100e0b" />
+				<path fill="url(#copper)" d="M7 8h7.5L16 18.5 17.5 8H25L16.85 25.4a1 1 0 0 1-1.7 0L7 8Z" />
+				<defs>
+					<linearGradient id="copper" x1="16" y1="8" x2="16" y2="25.4" gradientUnits="userSpaceOnUse">
+						<stop offset="0" stop-color="#d99a6c" />
+						<stop offset="1" stop-color="#a85e28" />
+					</linearGradient>
+				</defs>
+			</svg>
+			<h1>Vezne</h1>
+			<p class="tagline">Kişisel finans takibi. Çok yakında.</p>
+			<p class="tagline-en">Personal finance tracking. Coming soon.</p>
+			<a class="cta" href="https://app.vezne.app">Uygulamaya git →</a>
+		</main>
+	</body>
+</html>
+
+<style>
+	:global(html) {
+		background: #070605;
+	}
+
+	:global(body) {
+		margin: 0;
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+		color: #ece7df;
+	}
+
+	main {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: 0.75rem;
+		padding: 2rem;
+	}
+
+	.mark {
+		margin-bottom: 0.5rem;
+	}
+
+	h1 {
+		margin: 0;
+		font-size: 2.5rem;
+		font-weight: 600;
+		letter-spacing: -0.02em;
+	}
+
+	.tagline {
+		margin: 0;
+		font-size: 1.1rem;
+		color: #ece7df;
+	}
+
+	.tagline-en {
+		margin: 0;
+		font-size: 0.9rem;
+		color: #a39e95;
+	}
+
+	.cta {
+		margin-top: 1.5rem;
+		color: #c17b45;
+		text-decoration: none;
+		font-size: 0.95rem;
+		border-bottom: 1px solid rgba(193, 123, 69, 0.4);
+		padding-bottom: 2px;
+	}
+
+	.cta:hover {
+		border-bottom-color: #c17b45;
+	}
+</style>
