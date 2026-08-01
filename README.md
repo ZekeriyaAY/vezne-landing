@@ -1,11 +1,10 @@
 # Vezne — vezne-landing
 
-Marketing/landing site for **Vezne**, deployed to `vezne.app` (apex domain)
-via Cloudflare Pages. Astro, static output, no framework runtime.
+Marketing/landing site for **Vezne**, served at `vezne.app` (apex domain).
+Astro, static output, no framework runtime.
 
-Currently a placeholder "coming soon" page. Planned scope (see the
-workspace root `LAUNCH-PLAN.md` §6): landing, pricing, FAQ, blog, status
-page link.
+Landing page, FAQ, terms, and privacy are live. Pricing, blog, and
+status page link are still pending — see `PLAN.md`.
 
 ## Commands
 
