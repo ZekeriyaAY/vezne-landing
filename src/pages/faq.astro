@@ -7,7 +7,7 @@ const groups = [
 		items: [
 			{
 				q: 'What is Vezne?',
-				a: 'Vezne is a personal finance tracker. Record and categorize your income and expenses, import bank statement files, set up rules that categorize new transactions automatically, and track it all from a dashboard — with no live connection to your bank.',
+				a: 'Vezne is a personal finance tracker. Import bank statements or add transactions yourself, use rules to auto-categorize what you import, and track it all from a dashboard — with no live connection to your bank.',
 			},
 			{
 				q: 'Is Vezne free to use?',
@@ -16,6 +16,14 @@ const groups = [
 			{
 				q: 'Do I need to connect my bank account?',
 				a: 'No. Vezne never connects directly to your bank or asks for your banking credentials. You export a statement from your bank yourself and upload the file.',
+			},
+			{
+				q: 'How do I import transactions in bulk?',
+				a: 'Upload a bank statement file (Excel, CSV, or PDF) from the Import page. Every row goes through a preview where you can review, edit, or exclude it before it’s added, and Vezne remembers your column mapping for next time.',
+			},
+			{
+				q: 'Can I add a transaction manually instead?',
+				a: 'Yes — use New transaction on the Transactions page to add one at a time, handy for cash purchases a statement won’t show. Automation rules only apply to imported transactions, so manual entries need a category picked by hand.',
 			},
 		],
 	},
@@ -28,7 +36,7 @@ const groups = [
 			},
 			{
 				q: 'How does column mapping work?',
-				a: 'After you upload a file, Vezne asks you to map its columns (date, amount, description, etc.) to the fields it understands. You can save a mapping, and it’ll be suggested automatically the next time you import a statement from the same bank.',
+				a: 'After you upload a file, Vezne automatically detects and maps the columns it recognizes (date, amount, description, etc.) by their header names — you only need to map the ones it couldn’t match. You can also save a mapping and pick it from the dropdown next time you import a statement from the same bank, instead of mapping columns again.',
 			},
 			{
 				q: 'Can I check the data before it’s added to my account?',
@@ -45,7 +53,7 @@ const groups = [
 		items: [
 			{
 				q: 'How are categories organized?',
-				a: 'Categories have up to two levels — a parent for grouping, and children underneath it. Transactions and rules always attach to a specific child category, never to a parent group directly.',
+				a: 'Categories have two levels — a parent for grouping (like Transportation) and specific children underneath it (like Flights, Taxi & Ride Share, Fuel). Transactions and rules always attach to the specific child, never just the parent, so your dashboard shows exactly what’s driving a number — not just that Transportation was high this month, but that it was mostly flights.',
 			},
 			{
 				q: 'What are tags for?',
