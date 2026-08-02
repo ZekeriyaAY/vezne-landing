@@ -30,3 +30,6 @@ Thumbs.db
 
 # VS Code
 .vscode/
+
+# local Claude Code worktrees (ephemeral, never project content)
+.claude/worktrees/
