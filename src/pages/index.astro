@@ -2,76 +2,60 @@
 import { Image } from 'astro:assets';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import importShot from '../assets/screenshots/import.png';
+import manualAddShot from '../assets/screenshots/manual-add.png';
 import rulesShot from '../assets/screenshots/rules.png';
 import dashboardShot from '../assets/screenshots/dashboard.png';
 
-const steps = [
+const journey = [
 	{
-		title: 'Import',
-		text: 'Upload an Excel, CSV, or PDF bank statement. Every row goes through a preview where you can review, edit, or exclude it before anything is added to your account.',
-	},
-	{
-		title: 'Automate',
-		text: 'Set a rule once and it runs on every future import — match transaction text and assign a category, type, or tags automatically.',
-	},
-	{
-		title: 'Understand',
-		text: 'A dashboard shows income, expenses, and net savings, with category breakdowns and month-over-month trends.',
-	},
-];
-
-const features = [
-	{
-		title: 'Bank statement import',
-		text: 'Column mapping is remembered per bank, duplicate transactions are caught automatically, and nothing is added to your account without a review step first.',
+		number: '01',
+		title: 'Import your bank statements',
+		text: 'Upload an Excel, CSV, or PDF file. Every row goes through a preview where you can review, edit, or exclude it before anything is added to your account — column mapping is remembered per bank, and duplicates are caught automatically.',
 		formats: ['.xlsx', '.xls', '.csv', '.pdf'],
-	},
-	{
-		title: 'Automation rules',
-		text: 'Rules match transaction text — contains, equals, starts with, or ends with — and run in priority order, assigning a category and optionally a type or tags. Recurring transactions sort themselves.',
-	},
-	{
-		title: 'Dashboard & insights',
-		text: 'Income, expenses, net savings, and transaction count at a glance, plus category breakdowns, daily trends, and monthly comparisons.',
-	},
-];
-
-const previews = [
-	{
-		title: 'Bank statement import',
-		caption: 'Upload a file, map its columns once, and Vezne remembers the mapping for next time.',
 		image: importShot,
 		alt: 'Vezne import screen with a file upload field and saved column mapping selector',
+		layout: 'side',
 	},
 	{
-		title: 'Automation rules',
-		caption: 'Priority-ordered rules match transaction text and assign a category automatically.',
+		text: "Prefer not to upload a file? Add transactions one at a time instead — handy for cash purchases a statement won't show.",
+		image: manualAddShot,
+		alt: 'Vezne "New transaction" dialog filled in for a cash taxi expense, with amount, category, and tags',
+		layout: 'side',
+		reverse: true,
+	},
+	{
+		number: '02',
+		title: 'Categorize it automatically',
+		text: 'Rules match transaction text — contains, equals, starts with, or ends with — and run in priority order during import, assigning a specific category and tags automatically. Set them up once and every future statement sorts itself.',
 		image: rulesShot,
 		alt: 'Vezne rules table listing three automation rules with their match text and assigned category',
+		layout: 'side',
 	},
 	{
-		title: 'Dashboard & insights',
-		caption: 'Income, expenses, and net savings over time, plus a category breakdown.',
+		number: '03',
+		title: 'See where your money goes',
+		text: "Down to the sub-category, not just the category. Most banking apps show ‘Transportation’ as one lump sum — Vezne splits it into flights, taxis, and whatever else you set up, alongside income, net savings, and trends over time.",
 		image: dashboardShot,
 		alt: 'Vezne dashboard with income, expense, and net savings charts and a category breakdown',
+		layout: 'full',
 	},
 ];
 ---
 
 <SiteLayout
 	title="Personal finance tracker"
-	description="Vezne is a personal finance tracker — import bank statements, automate categorization with rules, and see where your money goes."
+	description="Vezne is a personal finance tracker — import bank statements or add transactions yourself, auto-categorize what you import with rules, and see where your money goes."
 	wide
 >
 	<section class="hero">
 		<h1>Track your money without connecting your bank.</h1>
 		<p class="lede">
-			Import your bank statement files, set rules that categorize new
-			transactions automatically, and see exactly where your money goes.
+			Import bank statements or add transactions yourself, let rules
+			auto-categorize what you import, and see exactly where your money goes.
 		</p>
 		<div class="hero-actions">
 			<a class="cta-primary" href="https://app.vezne.app/register">Go to app →</a>
-			<a class="cta-secondary" href="/faq">See how it works</a>
+			<a class="cta-secondary" href="#how-it-works">See how it works</a>
 		</div>
 		<p class="trust">
 			No bank connection, ever — Vezne only sees the statement files you
@@ -79,46 +63,32 @@ const previews = [
 		</p>
 	</section>
 
-	<section class="steps">
+	<section class="journey" id="how-it-works">
+		<p class="section-label">How it works</p>
 		{
-			steps.map((step, i) => (
-				<div class="step">
-					<span class="step-index">{String(i + 1).padStart(2, '0')}</span>
-					<h3>{step.title}</h3>
-					<p>{step.text}</p>
-				</div>
-			))
-		}
-	</section>
-
-	<section class="features">
-		{
-			features.map((feature) => (
-				<div class="feature">
-					<h3>{feature.title}</h3>
-					<p>{feature.text}</p>
-					{feature.formats && (
-						<ul class="formats">
-							{feature.formats.map((format) => (
-								<li>{format}</li>
-							))}
-						</ul>
-					)}
-				</div>
-			))
-		}
-	</section>
-
-	<section class="previews">
-		<h2 class="previews-heading">See it in action</h2>
-		{
-			previews.map((preview) => (
-				<div class="preview">
-					<p class="preview-title">{preview.title}</p>
-					<div class="preview-frame">
-						<Image src={preview.image} alt={preview.alt} />
+			journey.map((step) => (
+				<div
+					class:list={[
+						'journey-row',
+						step.layout === 'full' && 'journey-row--full',
+						step.reverse && 'journey-row--reverse',
+					]}
+				>
+					<div class="journey-text">
+						{step.number && <span class="journey-number">{step.number}</span>}
+						{step.title && <h3>{step.title}</h3>}
+						<p>{step.text}</p>
+						{step.formats && (
+							<ul class="formats">
+								{step.formats.map((format) => (
+									<li>{format}</li>
+								))}
+							</ul>
+						)}
 					</div>
-					<p class="preview-caption">{preview.caption}</p>
+					<div class="journey-frame">
+						<Image src={step.image} alt={step.alt} />
+					</div>
 				</div>
 			))
 		}
@@ -126,6 +96,10 @@ const previews = [
 </SiteLayout>
 
 <style>
+	:global(html) {
+		scroll-behavior: smooth;
+	}
+
 	.hero {
 		max-width: 640px;
 		margin: 2rem 0 4rem;
@@ -185,17 +159,45 @@ const previews = [
 		color: #a39e95;
 	}
 
-	.steps {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 2rem;
-		padding: 2.5rem 0;
-		border-top: 1px solid rgba(236, 231, 223, 0.08);
-		border-bottom: 1px solid rgba(236, 231, 223, 0.08);
+	.journey {
+		padding-top: 3rem;
 		margin-bottom: 4rem;
+		border-top: 1px solid rgba(236, 231, 223, 0.08);
 	}
 
-	.step-index {
+	.section-label {
+		margin: 0 0 3rem;
+		font-size: 0.8rem;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: #a39e95;
+	}
+
+	.journey-row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 3rem;
+		align-items: center;
+	}
+
+	.journey-row + .journey-row {
+		margin-top: 5rem;
+	}
+
+	.journey-row--reverse .journey-frame {
+		order: -1;
+	}
+
+	.journey-row--full {
+		grid-template-columns: 1fr;
+	}
+
+	.journey-row--full .journey-text {
+		max-width: 640px;
+	}
+
+	.journey-number {
 		display: block;
 		font-size: 0.8rem;
 		font-weight: 600;
@@ -204,43 +206,17 @@ const previews = [
 		margin-bottom: 0.75rem;
 	}
 
-	.step h3 {
-		margin: 0 0 0.5rem;
-		font-size: 1.05rem;
+	.journey-text h3 {
+		margin: 0 0 0.75rem;
+		font-size: 1.4rem;
 		font-weight: 600;
+		letter-spacing: -0.01em;
 	}
 
-	.step p {
+	.journey-text p {
 		margin: 0;
-		font-size: 0.9rem;
-		line-height: 1.6;
-		color: #a39e95;
-	}
-
-	.features {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 1.5rem;
-		margin-bottom: 3rem;
-	}
-
-	.feature {
-		background: #100e0b;
-		border: 1px solid rgba(236, 231, 223, 0.08);
-		border-radius: 12px;
-		padding: 1.5rem;
-	}
-
-	.feature h3 {
-		margin: 0 0 0.6rem;
-		font-size: 1rem;
-		font-weight: 600;
-	}
-
-	.feature p {
-		margin: 0;
-		font-size: 0.9rem;
-		line-height: 1.6;
+		font-size: 0.95rem;
+		line-height: 1.65;
 		color: #a39e95;
 	}
 
@@ -261,34 +237,7 @@ const previews = [
 		padding: 0.15rem 0.5rem;
 	}
 
-	.previews {
-		margin: 0 0 3rem;
-	}
-
-	.previews-heading {
-		margin: 0 0 2rem;
-		font-size: 0.8rem;
-		font-weight: 600;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: #a39e95;
-	}
-
-	.preview-frame {
-		max-width: 900px;
-	}
-
-	.preview + .preview {
-		margin-top: 3rem;
-	}
-
-	.preview-title {
-		margin: 0 0 0.75rem;
-		font-size: 1rem;
-		font-weight: 600;
-	}
-
-	.preview-frame {
+	.journey-frame {
 		background: #100e0b;
 		border: 1px solid rgba(236, 231, 223, 0.08);
 		border-radius: 12px;
@@ -296,27 +245,37 @@ const previews = [
 		line-height: 0;
 	}
 
-	.preview-frame :global(img) {
+	.journey-row--full .journey-frame {
+		margin-top: 2.5rem;
+	}
+
+	.journey-frame :global(img) {
 		display: block;
 		width: 100%;
 		height: auto;
 	}
 
-	.preview-caption {
-		margin: 0.75rem 0 0;
-		font-size: 0.85rem;
-		line-height: 1.6;
-		color: #a39e95;
-	}
-
-	@media (max-width: 760px) {
+	@media (max-width: 860px) {
 		.hero h1 {
 			font-size: 2rem;
 		}
 
-		.steps,
-		.features {
+		.journey-row,
+		.journey-row--full {
 			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+
+		.journey-row + .journey-row {
+			margin-top: 3rem;
+		}
+
+		.journey-row--reverse .journey-frame {
+			order: 0;
+		}
+
+		.journey-row--full .journey-frame {
+			margin-top: 0;
 		}
 	}
 </style>
