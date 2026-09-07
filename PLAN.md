@@ -26,9 +26,10 @@ dependency clears.
   (`src/pages/terms.astro`, `src/pages/privacy.astro`,
   `src/layouts/LegalLayout.astro`), migrated as-is from the draft
   English text that used to live in `vezne-web`
-  (`TermsPage.tsx`/`PrivacyPage.tsx`/`LegalPageShell.tsx`). That repo
-  still has the old in-app copies and internal links pending removal
-  — see its `PLAN.md`. This is still the **draft, non-lawyer-reviewed**
+  (`TermsPage.tsx`/`PrivacyPage.tsx`/`LegalPageShell.tsx`); those
+  in-app copies and the internal links to them are now gone from
+  `vezne-web` (verified 2026-09-07), so nothing is owed on that side.
+  This is still the **draft, non-lawyer-reviewed**
   text, and KVKK Aydınlatma Metni, Mesafeli Satış Sözleşmesi, and
   Çerez Politikası don't exist yet at all. All of that is blocked on
   lawyer engagement (workspace
