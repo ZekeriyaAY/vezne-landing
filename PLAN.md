@@ -35,6 +35,14 @@ dependency clears.
   lawyer engagement (workspace
   `LAUNCH-PLAN.md` §5/§7) — swap in the official TR-reviewed text
   (and add the missing documents) once it lands.
+
+  One thing settled ahead of time so it isn't re-derived: this site
+  uses **no cookies, no analytics and no third-party scripts**, and a
+  full inventory across the product (workspace `LAUNCH-PLAN.md` §5.1)
+  found nothing beyond strictly necessary storage. So **no consent
+  banner is required today**, and the Çerez Politikası is a short
+  factual document whenever it gets written. Adding analytics to this
+  site flips that conclusion and makes a banner mandatory.
 - **Testimonials section** — no real users to quote until the beta
   cohort (workspace `LAUNCH-PLAN.md` v9) is running.
 - **Status page link** (`status.<domain>`) — blocked on the status
